@@ -355,9 +355,9 @@ class TextEncoder(PreTrainedModel):
     def cls_pool(self, last_hidden_state, attention_mask):
         return last_hidden_state[:, 0]
 
-    def forward(self, input_ids, attention_mask):
+    def forward(self, input_ids, attention_mask, **kwargs):
         output = self.transformer(
-            input_ids=input_ids, attention_mask=attention_mask
+            input_ids=input_ids, attention_mask=attention_mask, **kwargs
         )
 
         pooled_output = self.pool(output.last_hidden_state, attention_mask)
